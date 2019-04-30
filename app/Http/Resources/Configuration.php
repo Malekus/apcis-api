@@ -17,8 +17,10 @@ class Configuration extends JsonResource
         return [
             'id' => $this->id,
             'categorie' => $this->categorie,
-            'type' => $this->type,
-            'label' => $this->label,
+            'champ' => $this->champ,
+            'libelle' => $this->libelle,
+            'created_at' => \Carbon\Carbon::parse($this->created_at)->format('d/m/Y'),
+            'updated_at' => \Carbon\Carbon::parse($this->updated_at)->format('d/m/Y'),
         ];
 
     }
