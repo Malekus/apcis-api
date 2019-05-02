@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonneRequest;
-use App\Personne;
-use Illuminate\Http\Request;
 use App\Http\Resources\Personne as PersonneResource;
+use App\Personne;
 
 class PersonneController extends Controller
 {

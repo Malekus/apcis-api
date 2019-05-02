@@ -28,3 +28,14 @@ Route::put('personne/{id}', 'PersonneController@store')
     ->name('store');
 Route::delete('personne/{id}', 'PersonneController@destroy')
     ->name('destroy');
+
+Route::get('partenaire', 'PartenaireController@index')
+    ->name('index');
+Route::get('partenaire/{id}', 'PartenaireController@show')
+    ->name('show');
+Route::post('partenaire', 'PartenaireController@store')
+    ->name('store');
+Route::put('partenaire/{id}', 'PartenaireController@store')
+    ->name('store');
+Route::delete('partenaire/{id}', 'PartenaireController@destroy')
+    ->name('destroy');

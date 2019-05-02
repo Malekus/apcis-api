@@ -8,9 +8,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ConfigurationTableSeeder::class,
-            PersonnesTableSeeder::class,
-            /*PartenaireTableSeeder::class,
-            ProblemeTableSeeder::class,
+            PersonneTableSeeder::class,
+            PartenaireTableSeeder::class,
+            /*ProblemeTableSeeder::class,
             ActionTableSeeder::class,
             CafDateTableSeeder::class,*/
         ]);

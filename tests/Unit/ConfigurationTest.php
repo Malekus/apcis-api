@@ -18,7 +18,6 @@ class ConfigurationTest extends TestCase
 
     public function testIndex()
     {
-
         $response = $this->get('/api/configuration');
         $response->assertStatus(200);
     }

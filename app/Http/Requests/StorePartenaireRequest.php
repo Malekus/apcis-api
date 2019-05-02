@@ -8,7 +8,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
-class StorePersonneRequest extends FormRequest
+class StorePartenaireRequest extends FormRequest
 {
     public function authorize()
     {
