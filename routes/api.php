@@ -17,3 +17,14 @@ Route::put('configuration/{id}', 'ConfigurationController@store')
     ->name('store');
 Route::delete('configuration/{id}', 'ConfigurationController@destroy')
     ->name('destroy');
+
+Route::get('personne', 'PersonneController@index')
+    ->name('index');
+Route::get('personne/{id}', 'PersonneController@show')
+    ->name('show');
+Route::post('personne', 'PersonneController@store')
+    ->name('store');
+Route::put('personne/{id}', 'PersonneController@store')
+    ->name('store');
+Route::delete('personne/{id}', 'PersonneController@destroy')
+    ->name('destroy');

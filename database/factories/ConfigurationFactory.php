@@ -5,8 +5,10 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(\App\Configuration::class, function (Faker $faker) {
     return [
-        //
+        'categorie' => $faker->word,
+        'champ' => $faker->word,
+        'libelle' => $faker->word,
     ];
 });

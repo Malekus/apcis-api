@@ -8,7 +8,7 @@ class Configuration extends Model
 {
     protected $table = 'configurations';
 
-    protected $fillable = ['categorie', 'champ', 'libelle'];
+    protected $fillable = ['id', 'categorie', 'champ', 'libelle'];
 
     public static function boot()
     {
