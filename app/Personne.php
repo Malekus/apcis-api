@@ -20,6 +20,7 @@ class Personne extends Model
         'nationalite',
         'logement',
         'telephone',
+        'situation',
         'email',
         'adresse',
         'code_postale',
@@ -27,6 +28,23 @@ class Personne extends Model
         'prioritaire',
         'matricule_caf'
     ];
+
+
+    /*
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($personne) {
+            $personne->problemes()->delete();
+        });
+    }
+    */
+
+
+    public function problemes()
+    {
+        return $this->hasMany(Probleme::class);
+    }
 
     public function logement()
     {

@@ -3,19 +3,10 @@
 namespace Tests\Unit;
 
 use App\Configuration;
-use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class ConfigurationTest extends TestCase
 {
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        Artisan::call('migrate');
-    }
-
-
     public function testIndex()
     {
         $response = $this->get('/api/configuration');
@@ -24,16 +15,14 @@ class ConfigurationTest extends TestCase
 
     public function testShow()
     {
-        $model = Configuration::create(['categorie' => 'Personne', 'champ' => 'azertyui', 'libelle' => 'Driver']);
+        $model = factory(Configuration::class)->create();
         $response = $this->get('/api/configuration/' . $model->id);
         $response->assertStatus(200);
-        $data = $response->json()["data"];
-        $this->assertEquals($data["categorie"], "Personne");
     }
 
     public function testDestroy()
     {
-        $model = Configuration::create(['categorie' => 'Personne', 'champ' => 'azertyui', 'libelle' => 'Driver']);
+        $model = factory(Configuration::class)->create();
         $response = $this->delete('/api/configuration/' . $model->id);
         $response->assertStatus(200);
         $response = $this->get('/api/configuration/' . $model->id);
@@ -43,7 +32,8 @@ class ConfigurationTest extends TestCase
     public function testStorePost()
     {
         // Creation d'une configuration
-        $response = $this->post('/api/configuration', ['categorie' => 'Personne', 'champ' => 'azertyui', 'libelle' => 'Driver']);
+        $model = factory(Configuration::class)->make();
+        $response = $this->post('/api/configuration', ['categorie' => $model->categorie, 'champ' => $model->champ, 'libelle' => $model->libelle]);
         $response->assertStatus(201);
         // Creation d'une configuration déjà existante
         $response = $this->post('/api/configuration', ['categorie' => 'Personne', 'champ' => 'azertyui', 'libelle' => 'Driver']);
@@ -55,12 +45,12 @@ class ConfigurationTest extends TestCase
 
     public function testStorePut()
     {
-        $model = Configuration::create(['categorie' => 'Personne', 'champ' => 'azertyui', 'libelle' => 'Driver']);
-        $response = $this->put('/api/configuration/' . $model->id, ['categorie' => "Partenaire"]);
+        $configuration = Configuration::all()->random();
+        $model = factory(Configuration::class)->make();
+        $response = $this->put('/api/configuration/' . $configuration->id, ['categorie' => "Partenaire"]);
         $response->assertStatus(422);
-        $response = $this->put('/api/configuration/' . $model->id, ['categorie' => "Partenaire", 'champ' => 'azertyui', 'libelle' => 'Driver']);
+        $response = $this->put('/api/configuration/' . $configuration->id, ['categorie' => $model->categorie, 'champ' => $model->champ, 'libelle' => $model->libelle]);
         $response->assertStatus(200);
-        $this->assertEquals($response->json()["data"]["categorie"], "Partenaire");
     }
 
 }

@@ -8,11 +8,6 @@ use Tests\TestCase;
 
 class PersonneTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        Artisan::call('migrate');
-    }
 
     public function testIndex()
     {
@@ -22,17 +17,16 @@ class PersonneTest extends TestCase
 
     public function testShow()
     {
-        $personne = Personne::create(['nom' => "Toto"]);
+        $personne = factory(Personne::class)->create();
         $response = $this->get('/api/personne/' . $personne->id);
         $response->assertStatus(200);
-        $this->assertEquals($response->json()["data"]["nom"], "Toto");
         $response = $this->get('/api/personne/99999');
         $response->assertStatus(404);
     }
 
     public function testDestroy()
     {
-        $personne = Personne::create(['nom' => "Toto"]);
+        $personne = factory(Personne::class)->create();
         $response = $this->delete('/api/personne/' . $personne->id);
         $response->assertStatus(200);
         $response = $this->get('/api/personne/' . $personne->id);
@@ -51,7 +45,7 @@ class PersonneTest extends TestCase
 
     public function testStorePut()
     {
-        $personne = Personne::create(['nom' => "Toto"]);
+        $personne = factory(Personne::class)->create();
         // Update simple
         $response = $this->put('/api/personne/' . $personne->id, ['nom' => "Tata"]);
         $response->assertStatus(200);

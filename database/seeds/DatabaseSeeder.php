@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder
             ConfigurationTableSeeder::class,
             PersonneTableSeeder::class,
             PartenaireTableSeeder::class,
-            /*ProblemeTableSeeder::class,
-            ActionTableSeeder::class,
+            ProblemeTableSeeder::class,
+            /*ActionTableSeeder::class,
             CafDateTableSeeder::class,*/
         ]);
     }

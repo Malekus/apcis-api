@@ -39,3 +39,14 @@ Route::put('partenaire/{id}', 'PartenaireController@store')
     ->name('store');
 Route::delete('partenaire/{id}', 'PartenaireController@destroy')
     ->name('destroy');
+
+Route::get('probleme', 'ProblemeController@index')
+    ->name('index');
+Route::get('probleme/{id}', 'ProblemeController@show')
+    ->name('show');
+Route::post('probleme', 'ProblemeController@store')
+    ->name('store');
+Route::put('probleme/{id}', 'ProblemeController@store')
+    ->name('store');
+Route::delete('probleme/{id}', 'ProblemeController@destroy')
+    ->name('destroy');
