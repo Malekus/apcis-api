@@ -50,3 +50,14 @@ Route::put('probleme/{id}', 'ProblemeController@store')
     ->name('store');
 Route::delete('probleme/{id}', 'ProblemeController@destroy')
     ->name('destroy');
+
+Route::get('action', 'ActionController@index')
+    ->name('index');
+Route::get('action/{id}', 'ActionController@show')
+    ->name('show');
+Route::post('action', 'ActionController@store')
+    ->name('store');
+Route::put('action/{id}', 'ActionController@store')
+    ->name('store');
+Route::delete('action/{id}', 'ActionController@destroy')
+    ->name('destroy');

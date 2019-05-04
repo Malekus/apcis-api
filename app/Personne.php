@@ -8,38 +8,7 @@ class Personne extends Model
 {
     protected $table = 'personnes';
 
-    protected $fillable = [
-        'id',
-        'nom',
-        'prenom',
-        'date_naissance',
-        'sexe',
-        'enfant',
-        'csp',
-        'categorie',
-        'nationalite',
-        'logement',
-        'telephone',
-        'situation',
-        'email',
-        'adresse',
-        'code_postale',
-        'ville',
-        'prioritaire',
-        'matricule_caf'
-    ];
-
-
-    /*
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($personne) {
-            $personne->problemes()->delete();
-        });
-    }
-    */
-
+    protected $fillable = ['*'];
 
     public function problemes()
     {

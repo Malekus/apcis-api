@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
             PersonneTableSeeder::class,
             PartenaireTableSeeder::class,
             ProblemeTableSeeder::class,
-            /*ActionTableSeeder::class,
-            CafDateTableSeeder::class,*/
+            ActionTableSeeder::class,
+            //CafDateTableSeeder::class,
         ]);
     }
 }
