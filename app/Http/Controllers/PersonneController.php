@@ -34,22 +34,23 @@ class PersonneController extends Controller
     {
         $personne = $request->isMethod('put') ? Personne::findOrFail($request->id) : new Personne;
 
-        $personne->nom = $request->get('nom');
-        $personne->prenom = $request->get('prenom');
-        $personne->date_naissance = $request->get('date_naissance');
-        $personne->sexe = $request->get('sexe');
-        $personne->enfant = $request->get('enfant');
-        $personne->nationalite = $request->get('nationalite');
-        $personne->telephone = $request->get('telephone');
-        $personne->email = $request->get('email');
-        $personne->adresse = $request->get('adresse');
-        $personne->code_postale = $request->get('code_postale');
-        $personne->ville = $request->get('ville');
-        $personne->prioritaire = $request->get('prioritaire');
-        $personne->matricule_caf = $request->get('matricule_caf');
-        $personne->logement()->associate($request->get('logement'));
-        $personne->csp()->associate($request->get('csp'));
-        $personne->categorie()->associate($request->get('categorie'));
+        $personne->nom = $request->get('nom') ?? null;
+        $personne->prenom = $request->get('prenom') ?? null;
+        $personne->date_naissance = $request->get('date_naissance') ?? null;
+        $personne->sexe = $request->get('sexe') ?? null;
+        $personne->enfant = $request->get('enfant') ?? 0;
+        $personne->nationalite = $request->get('nationalite') ?? null;
+        $personne->telephone = $request->get('telephone') ?? null;
+        $personne->email = $request->get('email') ?? null;
+        $personne->adresse = $request->get('adresse') ?? null;
+        $personne->code_postale = $request->get('code_postale') ?? null;
+        $personne->ville = $request->get('ville') ?? null;
+        $personne->prioritaire = $request->get('prioritaire') ?? null;
+        $personne->matricule_caf = $request->get('matricule_caf') ?? null;
+
+        $personne->logement()->associate($request->get('logement') ?? null);
+        $personne->csp()->associate($request->get('csp') ?? null);
+        $personne->categorie()->associate($request->get('categorie') ?? null);
 
         if ($personne->save()) {
             return new PersonneResource($personne);

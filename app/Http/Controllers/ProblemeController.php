@@ -34,10 +34,13 @@ class ProblemeController extends Controller
     {
         $probleme = $request->isMethod('put') ? Probleme::findOrFail($request->id) : new Probleme;
 
+        $probleme->resolu = $request->get('resolu') ?? false;
+        $probleme->dateProbleme = $request->get('dateProbleme') ?? \Carbon\Carbon::now();
+
         $probleme->personne()->associate($request->get('personne'));
         $probleme->categorie()->associate($request->get('categorie'));
         $probleme->type()->associate($request->get('type'));
-        $probleme->accompagnement()->associate($request->get('accompagnement'));
+        $probleme->accompagnement()->associate($request->get('accompagnement') ?? null);
 
         if ($probleme->save()) {
             return new ProblemeResource($probleme);

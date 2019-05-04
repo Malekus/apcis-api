@@ -35,20 +35,13 @@ class ProblemeTest extends TestCase
 
     public function testStorePost()
     {
-        // Creation d'une personne
-        $response = $this->post('/api/probleme',
-            ['personne' => \App\Personne::all()->random()->id,
-                'categorie' => \App\Configuration::where(['categorie' => 'Problème', 'champ' => 'Catégorie'])->get()->random()->id,
-                'type' => \App\Configuration::where(['categorie' => 'Problème', 'champ' => 'Type'])->get()->random()->id,
-                'accompagnement' => \App\Configuration::where(['categorie' => 'Problème', 'champ' => 'Accompagnement'])->get()->random()->id]
-        );
+        $response = $this->post('/api/probleme', ['personne' => 13, 'categorie' => 5, 'type' => 6, 'accompagnement' => 8]);
         $response->assertStatus(201);
         $personne = factory(Personne::class)->create();
-        $response = $this->post('/api/probleme', ['personne' => "", "categorie" => 2, "type" => 2, "accompagnement" => 2]);
+        $response = $this->post('/api/probleme', ['personne' => null, "categorie" => 2, "type" => 2, "accompagnement" => 2]);
         $response->assertStatus(422);
-        $response = $this->post('/api/probleme', ['personne' => $personne, "categorie" => null, "type" => 2, "accompagnement" => 2]);
+        $response = $this->post('/api/probleme', ['personne' => $personne->id, "categorie" => null, "type" => 2, "accompagnement" => 2]);
         $response->assertStatus(422);
-
     }
 
 
@@ -61,12 +54,10 @@ class ProblemeTest extends TestCase
         $response->assertStatus(200);
         $response = $this->put('/api/probleme/' . $probleme->id, ["accompagnement" => 2]);
         $response->assertStatus(422);
-
     }
 
     public function testDeletePersonne()
     {
-
         $probleme = factory(Probleme::class)->create();
         $personne = factory(Personne::class)->create();
         $probleme->personne()->associate($personne);
@@ -78,7 +69,6 @@ class ProblemeTest extends TestCase
         $response->assertStatus(200);
         $response = $this->delete('/api/probleme/' . $probleme->id);
         $response->assertStatus(404);
-
     }
 
 }

@@ -37,10 +37,11 @@ class PartenaireController extends Controller
         $partenaire = $request->isMethod('put') ? Partenaire::findOrFail($request->id) : new Partenaire;
 
         $partenaire->nom = $request->get('nom');
-        $partenaire->prenom = $request->get('prenom');
-        $partenaire->sexe = $request->get('sexe');
-        $partenaire->structure()->associate($request->get('logement'));
-        $partenaire->type()->associate($request->get('csp'));
+        $partenaire->prenom = $request->get('prenom') ?? null;
+        $partenaire->sexe = $request->get('sexe') ?? null;
+
+        $partenaire->structure()->associate($request->get('structure') ?? null);
+        $partenaire->type()->associate($request->get('type') ?? null);
 
         if ($partenaire->save()) {
             return new PartenaireResource($partenaire);
