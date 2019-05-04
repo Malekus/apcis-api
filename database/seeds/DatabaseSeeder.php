@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
             PartenaireTableSeeder::class,
             ProblemeTableSeeder::class,
             ActionTableSeeder::class,
-            //CafDateTableSeeder::class,
+            CafTableSeeder::class,
         ]);
     }
 }

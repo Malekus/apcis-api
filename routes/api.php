@@ -61,3 +61,15 @@ Route::put('action/{id}', 'ActionController@store')
     ->name('store');
 Route::delete('action/{id}', 'ActionController@destroy')
     ->name('destroy');
+
+
+Route::get('caf', 'CafController@index')
+    ->name('index');
+Route::get('caf/{id}', 'CafController@show')
+    ->name('show');
+Route::post('caf', 'CafController@store')
+    ->name('store');
+Route::put('caf/{id}', 'CafController@store')
+    ->name('store');
+Route::delete('caf/{id}', 'CafController@destroy')
+    ->name('destroy');
